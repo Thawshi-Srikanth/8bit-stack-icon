@@ -32,3 +32,20 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 
 # Finder (MacOS) folder config
 .DS_Store
+
+
+# docs
+docs/.vitepress/cache
+docs/.vitepress/dist
+docs/.vitepress/.temp
+docs/.vitepress/data/iconNodes
+docs/.vitepress/data/iconMetaData.ts
+docs/.vitepress/data/releaseMetaData.json
+docs/.vitepress/data/releaseMetaData
+docs/.vitepress/data/categoriesData.json
+docs/.vitepress/data/iconDetails
+docs/.vitepress/data/relatedIcons.json
+docs/.vitepress/data/brandStopwords.json
+docs/.vercel
+docs/.nitro
+.gitignore

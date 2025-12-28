@@ -1,15 +1,23 @@
 {
-  "name": "8bit-stack-icon-monorepo",
+  "name": "8bit-stack-icon",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thawshi-Srikanth/8bit-stack-icon.git"
+  },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "docs"
   ],
   "scripts": {
-    "build": "bun run scripts/build.ts"
+    "build": "bun run scripts/build.ts",
+    "docs:dev": "cd docs && bun run docs:dev",
+    "docs:build": "cd docs && bun run docs:build",
+    "docs:preview": "cd docs && bun run docs:preview",
+    "example:react": "cd examples/react && bun run dev"
   },
   "devDependencies": {
     "bun-types": "latest",
-    "typescript": "^5.0.0",
-    "@types/node": "^24.0.0"
+    "typescript": "^5.0.0"
   }
 }
