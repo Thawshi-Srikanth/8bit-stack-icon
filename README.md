@@ -1,51 +1,75 @@
-# 8-bit Stack Icons
+# 8-bit Stack Icons (Monorepo)
 
 A library of 8-bit / pixel-art style icons for popular tech stack technologies.
+Now supporting multiple frameworks!
+
+## Packages
+
+| Package | Status |
+| -- | -- |
+| `@8bit-icon/react` | ✅ Ready |
+| `@8bit-icon/vue` | ✅ Ready |
+| `@8bit-icon/svelte` | ✅ Ready |
+| `@8bit-icon/icons` | ✅ Core SVGs |
 
 ## Installation
 
 ```bash
-npm install 8bit-stack-icon
-# or
-bun add 8bit-stack-icon
-# or
-yarn add 8bit-stack-icon
-# or
-pnpm add 8bit-stack-icon
+# React
+npm install @8bit-icon/react
+
+# Vue
+npm install @8bit-icon/vue
+
+# Svelte
+npm install @8bit-icon/svelte
 ```
 
 ## Usage
 
 ### React
 
-Icons are available as React components.
-
 ```tsx
-import { JavascriptIcon, TypescriptIcon } from "8bit-stack-icon";
+import { JavascriptIcon } from "@8bit-icon/react";
 
-function App() {
-  return (
-    <div>
-      <JavascriptIcon width={32} height={32} />
-      <TypescriptIcon className="my-icon" />
-    </div>
-  );
-}
+<JavascriptIcon width={32} height={32} />
 ```
 
-### Raw SVG
+### Vue
 
-You can access the raw SVG files from the `dist/icons` directory (if your bundler supports it) or simply copy them from the package.
+```vue
+<script setup>
+import { JavascriptIcon } from "@8bit-icon/vue";
+</script>
 
-```tsx
-import jsIconUrl from "8bit-stack-icon/dist/icons/javascript.svg";
+<template>
+  <JavascriptIcon />
+</template>
 ```
 
-## Contributing
+### Svelte
 
-1. Add new 8-bit SVGs to `src/icons`.
-2. Run `bun run build`.
+```svelte
+<script>
+  import { JavascriptIcon } from "@8bit-icon/svelte";
+</script>
 
-## License
+<JavascriptIcon />
+```
 
-MIT
+## Development
+
+1. **Install dependencies**:
+   ```bash
+   bun install
+   ```
+
+2. **Add new icons**:
+   Place 8-bit SVGs in `packages/icons/src/`.
+
+3. **Build**:
+   ```bash
+   bun run build
+   ```
+
+   This automagically generates the code for all framework packages.
