@@ -1,17 +1,17 @@
 {
-    "name": "@8bit-icon/react",
-    "version": "0.1.0",
-    "type": "module",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "files": [
-        "dist"
-    ],
-    "peerDependencies": {
-        "react": ">=16.8.0"
-    },
-    "devDependencies": {
-        "react": "^19.0.0",
-        "@types/react": "^19.0.0"
-    }
+  "name": "@8bit-icon/react",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
+  "devDependencies": {
+    "react": "^19.0.0",
+    "@types/react": "^19.0.0"
+  }
 }

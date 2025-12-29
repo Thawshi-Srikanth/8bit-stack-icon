@@ -14,10 +14,13 @@
     "docs:dev": "cd docs && bun run docs:dev",
     "docs:build": "cd docs && bun run docs:build",
     "docs:preview": "cd docs && bun run docs:preview",
-    "example:react": "cd examples/react && bun run dev"
+    "example:react": "cd examples/react && bun run dev",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "devDependencies": {
     "bun-types": "latest",
+    "prettier": "^3.7.4",
     "typescript": "^5.0.0"
   }
 }

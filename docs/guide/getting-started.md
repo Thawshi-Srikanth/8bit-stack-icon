@@ -18,16 +18,15 @@ npm install @8bit-icon/svelte
 ### React
 
 ```tsx
-import { JavascriptIcon } from "@8bit-icon/react";
-
-<JavascriptIcon width={32} height={32} />
+import { JavascriptIcon } from '@8bit-icon/react'
+;<JavascriptIcon width={32} height={32} />
 ```
 
 ### Vue
 
 ```vue
 <script setup>
-import { JavascriptIcon } from "@8bit-icon/vue";
+import { JavascriptIcon } from '@8bit-icon/vue'
 </script>
 
 <template>

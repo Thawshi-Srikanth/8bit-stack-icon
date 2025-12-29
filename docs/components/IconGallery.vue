@@ -5,19 +5,25 @@ import * as Icons from '@8bit-icon/vue'
 const searchQuery = ref('')
 
 const iconList = computed(() => {
-  return Object.keys(Icons).map(name => ({
-    name: name.replace(/Icon$/, ''),
-    component: Icons[name]
-  })).filter(icon => 
-    icon.name.toLowerCase().includes(searchQuery.value.toLowerCase())
-  )
+  return Object.keys(Icons)
+    .map((name) => ({
+      name: name.replace(/Icon$/, ''),
+      component: Icons[name],
+    }))
+    .filter((icon) =>
+      icon.name.toLowerCase().includes(searchQuery.value.toLowerCase()),
+    )
 })
 </script>
 
 <template>
   <div class="gallery-container">
     <div class="search-bar">
-       <input v-model="searchQuery" placeholder="Search icons..." class="search-input" />
+      <input
+        v-model="searchQuery"
+        placeholder="Search icons..."
+        class="search-input"
+      />
     </div>
 
     <div class="icon-grid">

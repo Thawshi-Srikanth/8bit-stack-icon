@@ -3,6 +3,7 @@
 We welcome contributions! The goal is to have an 8-bit representation of every tech stack logo.
 
 ## 1. Project Setup
+
 Prerequisites: [Bun](https://bun.sh/).
 
 ```bash
@@ -15,6 +16,7 @@ bun install
 ```
 
 ## 2. Adding an Icon
+
 1. Design or find an 8-bit SVG.
    - Recommended grid: 16x16 or 32x32.
    - Aim for a pixel-art look (sharp edges).
@@ -26,11 +28,15 @@ bun install
    ```
 
 ## 3. Verify
+
 You can view your new icon in the documentation site:
+
 ```bash
 bun run docs:dev
 ```
+
 Open the provided localhost URL and navigate to "Icons".
 
 ## 4. Pull Request
+
 Commit your changes and open a PR!

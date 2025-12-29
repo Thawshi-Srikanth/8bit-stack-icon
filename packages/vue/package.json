@@ -1,16 +1,16 @@
 {
-    "name": "@8bit-icon/vue",
-    "version": "0.1.0",
-    "type": "module",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "files": [
-        "dist"
-    ],
-    "peerDependencies": {
-        "vue": ">=3.0.0"
-    },
-    "devDependencies": {
-        "vue": "^3.0.0"
-    }
+  "name": "@8bit-icon/vue",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "vue": ">=3.0.0"
+  },
+  "devDependencies": {
+    "vue": "^3.0.0"
+  }
 }
