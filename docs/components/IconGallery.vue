@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue'
-import * as Icons from '@8bit-icon/vue'
+import * as Icons from '@8bit-stack-icon/vue'
 import IconDrawer from './IconDrawer.vue'
 
 const isDrawerOpen = ref(false)

@@ -1,5 +1,6 @@
 {
   "name": "docs",
+  "private": true,
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,6 +15,6 @@
   "dependencies": {
     "vue": "^3.0.0",
     "vitepress": "^2.0.0-alpha.15",
-    "@8bit-icon/vue": "workspace:*"
+    "@8bit-stack-icon/vue": "workspace:*"
   }
 }

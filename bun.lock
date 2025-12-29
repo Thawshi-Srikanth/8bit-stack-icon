@@ -17,17 +17,17 @@
       "name": "docs",
       "version": "1.0.0",
       "dependencies": {
-        "@8bit-icon/vue": "workspace:*",
+        "@8bit-stack-icon/vue": "workspace:*",
         "vitepress": "^2.0.0-alpha.15",
         "vue": "^3.0.0",
       },
     },
     "packages/icons": {
-      "name": "@8bit-icon/icons",
+      "name": "@8bit-stack-icon/icons",
       "version": "0.1.0",
     },
     "packages/react": {
-      "name": "@8bit-icon/react",
+      "name": "@8bit-stack-icon/react",
       "version": "0.1.0",
       "devDependencies": {
         "@types/react": "^19.0.0",
@@ -38,7 +38,7 @@
       },
     },
     "packages/svelte": {
-      "name": "@8bit-icon/svelte",
+      "name": "@8bit-stack-icon/svelte",
       "version": "0.1.0",
       "devDependencies": {
         "svelte": "^4.0.0",
@@ -48,7 +48,7 @@
       },
     },
     "packages/vue": {
-      "name": "@8bit-icon/vue",
+      "name": "@8bit-stack-icon/vue",
       "version": "0.1.0",
       "devDependencies": {
         "vue": "^3.0.0",
@@ -59,13 +59,13 @@
     },
   },
   "packages": {
-    "@8bit-icon/icons": ["@8bit-icon/icons@workspace:packages/icons"],
+    "@8bit-stack-icon/icons": ["@8bit-stack-icon/icons@workspace:packages/icons"],
 
-    "@8bit-icon/react": ["@8bit-icon/react@workspace:packages/react"],
+    "@8bit-stack-icon/react": ["@8bit-stack-icon/react@workspace:packages/react"],
 
-    "@8bit-icon/svelte": ["@8bit-icon/svelte@workspace:packages/svelte"],
+    "@8bit-stack-icon/svelte": ["@8bit-stack-icon/svelte@workspace:packages/svelte"],
 
-    "@8bit-icon/vue": ["@8bit-icon/vue@workspace:packages/vue"],
+    "@8bit-stack-icon/vue": ["@8bit-stack-icon/vue@workspace:packages/vue"],
 
     "@ai-sdk/gateway": ["@ai-sdk/gateway@2.0.23", "", { "dependencies": { "@ai-sdk/provider": "2.0.0", "@ai-sdk/provider-utils": "3.0.19", "@vercel/oidc": "3.0.5" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-qmX7afPRszUqG5hryHF3UN8ITPIRSGmDW6VYCmByzjoUkgm3MekzSx2hMV1wr0P+llDeuXb378SjqUfpvWJulg=="],
 

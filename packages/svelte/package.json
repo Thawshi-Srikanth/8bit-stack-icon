@@ -1,6 +1,9 @@
 {
-  "name": "@8bit-icon/svelte",
+  "name": "@8bit-stack-icon/svelte",
   "version": "0.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

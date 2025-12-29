@@ -1,6 +1,9 @@
 {
-  "name": "@8bit-icon/react",
+  "name": "@8bit-stack-icon/react",
   "version": "0.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

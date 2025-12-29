@@ -1,6 +1,9 @@
 {
-  "name": "@8bit-icon/icons",
+  "name": "@8bit-stack-icon/icons",
   "version": "0.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "main": "dist/index.js",
   "files": [

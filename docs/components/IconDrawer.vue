@@ -39,9 +39,9 @@ const snippets = computed(() => {
   if (!props.icon) return {}
   const name = pascalName.value
   return {
-    react: `import { ${name}Icon } from '@8bit-icon/react';\n\n<${name}Icon />`,
-    vue: `import { ${name}Icon } from '@8bit-icon/vue';\n\n<${name}Icon />`,
-    svelte: `import { ${name}Icon } from '@8bit-icon/svelte';\n\n<${name}Icon />`
+    react: `import { ${name}Icon } from '@8bit-stack-icon/react';\n\n<${name}Icon />`,
+    vue: `import { ${name}Icon } from '@8bit-stack-icon/vue';\n\n<${name}Icon />`,
+    svelte: `import { ${name}Icon } from '@8bit-stack-icon/svelte';\n\n<${name}Icon />`
   }
 })
 

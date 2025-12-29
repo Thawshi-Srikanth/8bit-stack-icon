@@ -4,13 +4,13 @@
 
 ```bash
 # React
-npm install @8bit-icon/react
+npm install @8bit-stack-icon/react
 
 # Vue
-npm install @8bit-icon/vue
+npm install @8bit-stack-icon/vue
 
 # Svelte
-npm install @8bit-icon/svelte
+npm install @8bit-stack-icon/svelte
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ npm install @8bit-icon/svelte
 ### React
 
 ```tsx
-import { JavascriptIcon } from '@8bit-icon/react'
+import { JavascriptIcon } from '@8bit-stack-icon/react'
 ;<JavascriptIcon width={32} height={32} />
 ```
 
@@ -26,7 +26,7 @@ import { JavascriptIcon } from '@8bit-icon/react'
 
 ```vue
 <script setup>
-import { JavascriptIcon } from '@8bit-icon/vue'
+import { JavascriptIcon } from '@8bit-stack-icon/vue'
 </script>
 
 <template>
@@ -38,7 +38,7 @@ import { JavascriptIcon } from '@8bit-icon/vue'
 
 ```svelte
 <script>
-  import { JavascriptIcon } from "@8bit-icon/svelte";
+  import { JavascriptIcon } from "@8bit-stack-icon/svelte";
 </script>
 
 <JavascriptIcon />
