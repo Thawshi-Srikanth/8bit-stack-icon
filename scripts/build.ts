@@ -6,10 +6,12 @@ const PACKAGES_DIR = join(ROOT_DIR, 'packages')
 const ICONS_SOURCE_DIR = join(PACKAGES_DIR, 'icons', 'src')
 
 // Helpers
-const toPascalCase = (str: string) =>
-  str
+const toPascalCase = (str: string) => {
+  if (str === 'c++') return 'Cpp'
+  return str
     .replace(/[-_](.)/g, (_, c) => c.toUpperCase())
     .replace(/^(.)/, (c) => c.toUpperCase())
+}
 
 const cleanSvg = (svg: string) => {
   return svg
