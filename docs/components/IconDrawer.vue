@@ -9,6 +9,27 @@ const props = defineProps({
 
 const activeTab = ref('react')
 
+// Dynamic import for raw SVG content using Vite's glob import
+// This bundles the SVG strings into the JS, removing need for static files
+const svgModules = import.meta.glob('../../packages/icons/src/*.svg', { 
+  query: '?raw',
+  import: 'default',
+  eager: false
+})
+
+const getSvgContent = async (iconName) => {
+  // Construct the key matching the glob pattern
+  // Ensure name is lowercase to match filenames
+  const key = `../../packages/icons/src/${iconName.toLowerCase()}.svg`
+  const loader = svgModules[key]
+  if (!loader) {
+    console.error(`Missing SVG for ${iconName}. Checked key: ${key}`)
+    console.log('Available keys:', Object.keys(svgModules))
+    throw new Error(`SVG not found for ${iconName}`)
+  }
+  return await loader()
+}
+
 const pascalName = computed(() => {
   if (!props.icon) return ''
   return props.icon.name.charAt(0).toUpperCase() + props.icon.name.slice(1)
@@ -35,22 +56,31 @@ const copySnippet = async (text) => {
 
 const copySVG = async () => {
   try {
-    const res = await fetch(`/icons/${props.icon.name}.svg`)
-    const text = await res.text()
+    const text = await getSvgContent(props.icon.name)
     await navigator.clipboard.writeText(text)
     alert('SVG copied to clipboard!')
   } catch (err) {
     console.error('Failed to fetch SVG', err)
+    alert('Failed to load SVG content')
   }
 }
 
 const downloadSVG = async () => {
-  const link = document.createElement('a')
-  link.href = `/icons/${props.icon.name}.svg`
-  link.download = `${props.icon.name}.svg`
-  document.body.appendChild(link)
-  link.click()
-  document.body.removeChild(link)
+  try {
+    const text = await getSvgContent(props.icon.name)
+    // Create Data URI for download
+    const dataUri = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(text)}`
+    
+    const link = document.createElement('a')
+    link.href = dataUri
+    link.download = `${props.icon.name}.svg`
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  } catch (err) {
+    console.error('Failed to download SVG', err)
+    alert('Failed to generate download')
+  }
 }
 </script>
 
