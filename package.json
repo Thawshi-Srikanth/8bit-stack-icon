@@ -20,7 +20,8 @@
     "pixelate": "bun run scripts/pixelate.ts packages/icons/base packages/icons/src",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "release": "bun run build && changeset publish"
+    "release": "bun run build && changeset publish",
+    "optimize": "bun run scripts/optimize.ts packages/icons/src"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.8",
@@ -28,6 +29,7 @@
     "bun-types": "latest",
     "prettier": "^3.7.4",
     "sharp": "^0.34.5",
+    "svgo": "^4.0.0",
     "typescript": "^5.0.0"
   }
 }
