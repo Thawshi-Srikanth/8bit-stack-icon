@@ -49,3 +49,5 @@ docs/.vitepress/data/brandStopwords.json
 docs/.vercel
 docs/.nitro
 .gitignore
+# Original clean icons
+packages/icons/base
