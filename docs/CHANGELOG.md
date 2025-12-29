@@ -1,5 +1,12 @@
 # docs
 
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies [b1ebb5e]
+  - @8bit-stack-icon/vue@1.0.0
+
 ## 1.0.2
 
 ### Patch Changes
