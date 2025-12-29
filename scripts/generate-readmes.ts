@@ -119,7 +119,7 @@ npm install @8bit-stack-icon/icons
 This package contains the raw SVGs.
 
 \`\`\`javascript
-import stack from '@8bit-stack-icon/icons/base/stack.svg';
+import stack from '@8bit-stack-icon/icons/src/stack.svg';
 \`\`\`
 `
     }
