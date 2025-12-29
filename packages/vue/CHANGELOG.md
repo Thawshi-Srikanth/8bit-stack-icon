@@ -1,5 +1,11 @@
 # @8bit-stack-icon/vue
 
+## 0.2.1
+
+### Patch Changes
+
+- 00376bc: Fix module resolution by adding exports map to package.json.
+
 ## 0.2.0
 
 ### Minor Changes
