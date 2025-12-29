@@ -17,9 +17,11 @@
     "example:react": "cd examples/react && bun run dev",
     "pixelate": "bun run scripts/pixelate.ts packages/icons/base packages/icons/src",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "release": "bun run build && changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.8",
     "@types/sharp": "^0.32.0",
     "bun-types": "latest",
     "prettier": "^3.7.4",
