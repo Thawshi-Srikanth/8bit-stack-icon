@@ -24,26 +24,57 @@ async function pixelateFile(inputPath: string, outputPath: string) {
       .raw()
       .toBuffer()
 
-    let rects = ''
+    const pathMap = new Map<string, string[]>()
+    
     const { targetSize } = CONFIG
 
     for (let y = 0; y < targetSize; y++) {
+      let currentHex: string | null = null
+      let startX = 0
+
       for (let x = 0; x < targetSize; x++) {
         const idx = (y * targetSize + x) * 4
         const r = buffer[idx]
         const g = buffer[idx + 1]
         const b = buffer[idx + 2]
         const a = buffer[idx + 3]
-
+        
+        // Determine hex color for this pixel (null if transparent)
+        let hex: string | null = null
         if (a > CONFIG.threshold) {
-          // Convert RGB to Hex
-          const hex = `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`
-          rects += `<rect x="${x}" y="${y}" width="1" height="1" fill="${hex}" />`
+             hex = `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`
         }
+
+        // If color changes, end the previous run
+        if (hex !== currentHex) {
+          if (currentHex !== null) {
+            const width = x - startX
+            // Add horizontal rect path: M startX y h width v 1 h -width z
+            const cmd = `M${startX} ${y}h${width}v1h-${width}z`
+            if (!pathMap.has(currentHex)) pathMap.set(currentHex, [])
+            pathMap.get(currentHex)!.push(cmd)
+          }
+          currentHex = hex
+          startX = x
+        }
+      }
+
+      // End of row: flush the last run if it exists
+      if (currentHex !== null) {
+        const width = targetSize - startX
+        const cmd = `M${startX} ${y}h${width}v1h-${width}z`
+        if (!pathMap.has(currentHex)) pathMap.set(currentHex, [])
+        pathMap.get(currentHex)!.push(cmd)
       }
     }
 
-    const finalSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${targetSize} ${targetSize}" width="1em" height="1em">${rects}</svg>`
+    // Combine all path commands for each color
+    let finalContent = ''
+    for (const [color, cmds] of pathMap) {
+      finalContent += `<path fill="${color}" d="${cmds.join('')}" />`
+    }
+
+    const finalSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${targetSize} ${targetSize}" width="1em" height="1em">${finalContent}</svg>`
     await Bun.write(outputPath, finalSvg)
     console.log(`Generated: ${basename(outputPath)}`)
   } catch (error) {

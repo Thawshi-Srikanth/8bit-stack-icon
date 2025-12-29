@@ -13,9 +13,14 @@ const toPascalCase = (str: string) =>
 
 const cleanSvg = (svg: string) => {
   return svg
-    .replace(/<\?xml.*?\?>/, '')
-    .replace(/width=".*?"/, '')
-    .replace(/height=".*?"/, '')
+    .replace(/<\?xml.*?\?>/gi, '')
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/<style[\s\S]*?<\/style>/gi, '')
+    .replace(/width=".*?"/gi, '')
+    .replace(/height=".*?"/gi, '')
+    .replace(/style=".*?"/gi, '')
+    .replace(/\r\n/g, '\n')
+    .trim()
 }
 
 async function buildReact(name: string, svg: string) {

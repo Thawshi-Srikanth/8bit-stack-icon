@@ -56,51 +56,59 @@ const downloadSVG = async () => {
 
 <template>
   <div v-if="isOpen" class="drawer-overlay" @click="onClose">
-    <div class="drawer-content" @click.stop>
+    <div class="drawer-content bottom-sheet" @click.stop>
       <button class="close-btn" @click="onClose">&times;</button>
       
-      <div class="drawer-header">
-        <h2>{{ pascalName }}</h2>
-      </div>
-
-      <div class="drawer-body">
-        <div class="preview-section">
-            <component :is="icon.component" class="large-preview" />
-        </div>
-
-        <div class="actions-section">
-          <div class="tabs">
-            <button 
-              v-for="tab in ['react', 'vue', 'svelte', 'svg']" 
-              :key="tab"
-              :class="{ active: activeTab === tab }"
-              @click="activeTab = tab"
-            >
-              {{ tab.toUpperCase() }}
-            </button>
+      <div class="drawer-grid">
+        <!-- LEFT COLUMN: Actions & Info -->
+        <div class="drawer-left">
+          <div class="drawer-header">
+            <h2>{{ pascalName }}</h2>
           </div>
 
-          <div class="tab-content">
-            <template v-if="activeTab === 'svg'">
-               <div class="svg-actions">
-                 <button class="action-btn" @click="copySVG">Copy SVG</button>
-                 <button class="action-btn" @click="downloadSVG">Download SVG</button>
-               </div>
-            </template>
-            <template v-else>
-              <div class="code-box">
-                <button class="copy-icon-btn" @click="copySnippet(snippets[activeTab])" title="Copy">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                  </svg>
-                </button>
-                <pre><code>{{ snippets[activeTab] }}</code></pre>
-              </div>
-            </template>
+          <div class="actions-section">
+            <div class="tabs">
+              <button 
+                v-for="tab in ['react', 'vue', 'svelte', 'svg']" 
+                :key="tab"
+                :class="{ active: activeTab === tab }"
+                @click="activeTab = tab"
+              >
+                {{ tab.toUpperCase() }}
+              </button>
+            </div>
+
+            <div class="tab-content">
+              <template v-if="activeTab === 'svg'">
+                 <div class="svg-actions">
+                   <button class="action-btn" @click="copySVG">Copy SVG Code</button>
+                   <button class="action-btn secondary" @click="downloadSVG">Download SVG File</button>
+                 </div>
+              </template>
+              <template v-else>
+                <div class="code-box">
+                  <button class="copy-icon-btn" @click="copySnippet(snippets[activeTab])" title="Copy">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                  </button>
+                  <pre><code>{{ snippets[activeTab] }}</code></pre>
+                </div>
+              </template>
+            </div>
           </div>
         </div>
+
+        <!-- RIGHT COLUMN: Large Preview -->
+        <div class="drawer-right">
+           <div class="preview-container">
+              <component :is="icon.component" class="large-preview" />
+              <div class="preview-label">100x100px</div>
+           </div>
+        </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -112,65 +120,131 @@ const downloadSVG = async () => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(4px);
-  z-index: 100;
-  display: flex;
-  justify-content: flex-end; /* Slide from right */
-}
-
-.drawer-content {
-  width: 100%;
-  max-width: 400px;
-  background: var(--vp-c-bg);
-  height: 100%;
-  padding: 2rem;
-  box-shadow: -4px 0 12px rgba(0,0,0,0.2);
+  z-index: 200;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end; /* Align to bottom for bottom-sheet */
+}
+
+/* Bottom Sheet Container */
+.drawer-content.bottom-sheet {
+  width: 100%;
+  max-width: 100%;
+  background: var(--vp-c-bg); /* Use theme background */
+  border-top: 1px solid var(--vp-c-divider);
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+  padding: 2rem;
+  padding-bottom: 3rem; /* Extra space for safe area */
   position: relative;
-  animation: slideIn 0.3s ease-out;
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
-@keyframes slideIn {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
 }
 
-.close-btn {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: none;
-  border: none;
+/* Split Layout Grid */
+.drawer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Split 50/50 */
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Left Column */
+.drawer-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.drawer-header h2 {
   font-size: 2rem;
-  cursor: pointer;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
   color: var(--vp-c-text-1);
+}
+
+/* Right Column (Icon Preview) */
+.drawer-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--vp-c-bg-soft);
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid var(--vp-c-divider);
+}
+
+.preview-container {
+  text-align: center;
 }
 
 .large-preview {
-  width: 128px;
-  height: 128px;
-  margin: 2rem auto;
-  display: block;
+  width: 192px; /* Bigger Icon */
+  height: 192px;
   color: var(--vp-c-text-1);
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
 }
 
+.preview-label {
+  margin-top: 1rem;
+  color: var(--vp-c-text-2);
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--vp-c-text-1);
+  z-index: 10;
+  transition: all 0.2s;
+}
+.close-btn:hover {
+  background: var(--vp-c-bg-mute);
+}
+
+/* Tabs */
 .tabs {
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
-  border-bottom: 1px solid var(--vp-c-divider);
+  border-bottom: 2px solid var(--vp-c-divider);
 }
 
 .tabs button {
   background: none;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.2rem;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
   color: var(--vp-c-text-2);
   border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.2s;
+}
+
+.tabs button:hover {
+  color: var(--vp-c-text-1);
 }
 
 .tabs button.active {
@@ -179,62 +253,85 @@ const downloadSVG = async () => {
 }
 
 .tab-content {
-  background: var(--vp-c-bg-soft);
-  padding: 1rem;
+  padding-top: 0.5rem;
+}
+
+/* Code Snippet Box */
+.code-box {
+  position: relative;
+  background: #111; /* Darker background for code */
+  border: 1px solid #333;
   border-radius: 8px;
+  overflow: hidden;
 }
 
-pre {
+.code-box pre {
+  padding: 1.2rem;
+  padding-right: 3.5rem;
   margin: 0;
-  white-space: pre-wrap;
+  color: #a6accd; /* Better syntax highlighting color base */
+  overflow-x: auto;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
-.action-btn {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background: var(--vp-c-brand);
-  color: white;
-  border: none;
-  border-radius: 4px;
+.copy-icon-btn {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #888;
   cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  transition: all 0.2s;
 }
 
+.copy-icon-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Actions */
 .svg-actions {
     display: flex;
     gap: 1rem;
 }
 
-.code-box {
-  position: relative;
-  background: #1e1e1e;
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-.code-box pre {
-  padding: 1rem;
-  padding-right: 3rem; /* Space for copy button */
-  margin: 0;
-  color: #d4d4d4;
-  overflow-x: auto;
-  font-family: monospace;
-}
-
-.copy-icon-btn {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  background: transparent;
+.action-btn {
+  padding: 0.6rem 1.2rem;
+  background: var(--vp-c-brand);
+  color: white;
   border: none;
-  color: #888;
+  border-radius: 6px;
   cursor: pointer;
-  padding: 4px;
-  border-radius: 4px;
-  transition: color 0.2s, background 0.2s;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+.action-btn:hover {
+  opacity: 0.9;
 }
 
-.copy-icon-btn:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.1);
+.action-btn.secondary {
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+  border: 1px solid var(--vp-c-divider);
+}
+.action-btn.secondary:hover {
+  background: var(--vp-c-bg-mute);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .drawer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .drawer-right {
+    order: -1; /* Icon on top mobile */
+    padding: 1.5rem;
+  }
 }
 </style>
