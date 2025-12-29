@@ -1,5 +1,11 @@
 # @8bit-stack-icon/svelte
 
+## 1.0.0
+
+### Major Changes
+
+- b1ebb5e: Add numerous new icons
+
 ## 0.2.1
 
 ### Patch Changes
