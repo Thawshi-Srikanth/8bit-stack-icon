@@ -15,12 +15,15 @@
     "docs:build": "cd docs && bun run docs:build",
     "docs:preview": "cd docs && bun run docs:preview",
     "example:react": "cd examples/react && bun run dev",
+    "pixelate": "bun run scripts/pixelate.ts packages/icons/base packages/icons/src",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
   "devDependencies": {
+    "@types/sharp": "^0.32.0",
     "bun-types": "latest",
     "prettier": "^3.7.4",
+    "sharp": "^0.34.5",
     "typescript": "^5.0.0"
   }
 }
