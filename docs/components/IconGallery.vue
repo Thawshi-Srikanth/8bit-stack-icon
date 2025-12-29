@@ -1,6 +1,20 @@
 <script setup>
 import { ref, computed } from 'vue'
 import * as Icons from '@8bit-icon/vue'
+import IconDrawer from './IconDrawer.vue'
+
+const isDrawerOpen = ref(false)
+const selectedIcon = ref(null)
+
+const openDrawer = (icon) => {
+  selectedIcon.value = icon
+  isDrawerOpen.value = true
+}
+
+const closeDrawer = () => {
+  isDrawerOpen.value = false
+  selectedIcon.value = null
+}
 
 const searchQuery = ref('')
 
@@ -27,13 +41,15 @@ const iconList = computed(() => {
     </div>
 
     <div class="icon-grid">
-      <div v-for="icon in iconList" :key="icon.name" class="icon-card">
+      <div v-for="icon in iconList" :key="icon.name" class="icon-card" @click="openDrawer(icon)">
         <div class="icon-preview">
           <component :is="icon.component" :width="32" :height="32" />
         </div>
         <div class="icon-name">{{ icon.name }}</div>
       </div>
     </div>
+
+    <IconDrawer :isOpen="isDrawerOpen" :icon="selectedIcon" :onClose="closeDrawer" />
   </div>
 </template>
 
