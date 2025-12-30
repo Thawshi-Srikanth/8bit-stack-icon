@@ -3,10 +3,11 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: '8-bit Stack Icons',
   description: 'A pixel-art tech stack icon library.',
+  head: [['link', { rel: 'icon', href: '/icon.png' }]],
   base: '/',
   themeConfig: {
+    logo: '/logo.svg',
     nav: [
-      { text: 'Home', link: '/' },
       { text: 'Icons', link: '/icons' },
       { text: 'Guide', link: '/guide/getting-started' },
     ],

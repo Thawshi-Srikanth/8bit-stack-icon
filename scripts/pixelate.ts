@@ -137,7 +137,7 @@ async function pixelateFile(inputPath: string, outputPath: string) {
     // Combine all path commands for each color
     let finalContent = ''
     for (const [color, cmds] of pathMap) {
-      finalContent += `<path fill="${color}" fill-rule="evenodd" d="${cmds.join('')}" />`
+      finalContent += `<path fill="${color}" stroke="${color}" stroke-width="0.1" fill-rule="evenodd" d="${cmds.join('')}" />`
     }
 
     const finalSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${targetSize} ${targetSize}" width="1em" height="1em">${finalContent}</svg>`

@@ -1,0 +1,31 @@
+:root {
+  --vp-c-brand-1: #fc0332;
+  --vp-c-brand-2: #ffda00;
+  --vp-c-brand-3: #fc0332;
+}
+
+.dark {
+  --vp-c-bg: #090a16;
+  --vp-c-bg-alt: #16161e; /* Slightly lighter for contrast */
+  --vp-c-text-1: #ffffff;
+  --vp-c-text-2: rgba(255, 255, 255, 0.84);
+  --vp-c-text-3: rgba(255, 255, 255, 0.6);
+}
+
+/* Force dark mode colors or ensure they look good if user switches */
+/* Using the provided BG for both if intended, but usually it's for dark mode */
+/* Assuming the user wants this "Cyberpunk/Gaming" aesthetic continuously or primarily */
+
+/* Hero Text Gradient */
+/* Hero Text Gradient */
+.vp-doc h1,
+.VPFeature .title {
+  /* Optional: add some flair */
+}
+
+/* Home Content Wrapper */
+.home-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
